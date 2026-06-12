@@ -51,19 +51,25 @@ tr:nth-child(even) td{background:var(--light)}
 .logoprev{max-height:48px;max-width:160px;display:block;margin-top:6px}
 footer{padding:24px 0 40px;text-align:center;color:var(--gray);font-size:.8rem}
 #proposal{display:none}
-.prop-page{background:#fff;max-width:820px;margin:20px auto;padding:48px 56px;border:1px solid var(--border)}
-.prop-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--teal);padding-bottom:14px;margin-bottom:18px;gap:12px}
-.prop-co{font-size:1.5rem;font-weight:800;color:var(--navy)}
-.prop-co-sub{font-size:.85rem;color:var(--teal-dark)}
-.prop-logo{max-height:64px;max-width:200px;margin-bottom:6px;display:block}
-.prop-contact{font-size:.8rem;text-align:right;color:var(--gray)}
-.prop-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:.88rem;margin-bottom:16px}
-.prop-sec{font-weight:800;color:var(--teal-dark);font-size:.95rem;margin:18px 0 6px;letter-spacing:.5px}
-.prop-body{font-size:.9rem}
-.prop-table th{font-size:.78rem}
-.prop-foot{margin-top:28px;border-top:1px solid var(--border);padding-top:12px;font-size:.78rem;color:var(--gray);text-align:center}
-.sig-row{display:flex;gap:40px;margin-top:30px;font-size:.85rem}
-.sig{flex:1;border-top:1px solid var(--ink);padding-top:4px}
+.prop-page{background:#fff;max-width:820px;margin:20px auto;padding:56px 64px;border:1px solid var(--border);font-family:Georgia,'Times New Roman',serif;color:#222}
+.prop-banner{text-align:center;border-top:3px double #2F3A45;border-bottom:3px double #2F3A45;padding:18px 0 14px;margin-bottom:6px}
+.prop-logo{max-height:60px;max-width:180px;margin:0 auto 8px;display:block}
+.prop-co{font-size:1.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#2F3A45}
+.prop-co-sub{font-size:.85rem;color:#9A6A1E;letter-spacing:1px;margin-top:3px}
+.prop-contact{font-size:.8rem;color:#555;margin-top:6px}
+.prop-title{text-align:center;font-size:.95rem;letter-spacing:8px;color:#9A6A1E;margin:16px 0 4px;font-weight:700}
+.prop-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;font-size:.9rem;border:1px solid #d9d9d9;padding:12px 18px;margin:12px 0}
+.prop-sec{font-weight:700;color:#2F3A45;font-size:1rem;margin:22px 0 8px;letter-spacing:1.5px;border-bottom:1px solid #2F3A45;padding-bottom:3px}
+.prop-body{font-size:.92rem;line-height:1.55}
+.prop-table{font-family:Arial,Helvetica,sans-serif}
+.prop-table th{background:#fff;color:#2F3A45;border-top:2px solid #2F3A45;border-bottom:1px solid #2F3A45;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;padding:8px 10px}
+.prop-table td{border-bottom:1px solid #e6e6e6}
+.prop-table tr:nth-child(even) td{background:#fff}
+.prop-total-box{margin-top:12px;border:2px solid #2F3A45;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:1.1rem;color:#2F3A45;font-family:Arial,Helvetica,sans-serif}
+.prop-total-box span:last-child{color:#9A6A1E}
+.prop-foot{margin-top:32px;border-top:3px double #2F3A45;padding-top:10px;font-size:.78rem;color:#777;text-align:center}
+.sig-row{display:flex;gap:40px;margin-top:36px;font-size:.85rem}
+.sig{flex:1;border-top:1px solid #222;padding-top:4px}
 @media print{
   body{background:#fff}
   header,#builder,.actionbar,footer,.no-print{display:none !important}
@@ -130,9 +136,16 @@ footer{padding:24px 0 40px;text-align:center;color:var(--gray);font-size:.8rem}
         </select>
       </div>
       <div>
-        <label>Overhead &amp; profit markup %</label>
-        <input id="pjMarkup" type="number" value="22" min="0" max="60" onchange="recalc()">
-        <div class="hint">Guide: &lt;$10k → 25–30% · $10–50k → 20–25% · $50–150k → 18–22% · larger → 15–20%</div>
+        <label>Overhead &amp; profit markup</label>
+        <select id="pjMarkupSel" onchange="markupSel()">
+          <option value="28">Small jobs (under $10k) — 28% typical</option>
+          <option value="22" selected>Industry standard ($10–50k) — 22%</option>
+          <option value="20">Larger projects ($50–150k) — 20%</option>
+          <option value="17">Major projects ($150k+) — 17%</option>
+          <option value="custom">Custom % …</option>
+        </select>
+        <input id="pjMarkup" type="number" value="22" min="0" max="60" onchange="recalc()" style="display:none;margin-top:6px">
+        <div class="hint">Commercial glazing O&amp;P typically runs 15–30% depending on job size and competition. Pick a standard or set your own.</div>
       </div>
       <div>
         <label>Sales tax % (if applicable)</label>
@@ -218,6 +231,17 @@ let nextId = 1;
 /* ============ persistence ============ */
 function el(id){return document.getElementById(id)}
 function money(n){return '$'+Math.round(n).toLocaleString('en-US')}
+function markupSel(){
+  const s=el('pjMarkupSel');
+  if(s.value==='custom'){el('pjMarkup').style.display='block';}
+  else{el('pjMarkup').style.display='none';el('pjMarkup').value=s.value;}
+  recalc();
+}
+function syncMarkupSel(){
+  const v=el('pjMarkup').value, s=el('pjMarkupSel');
+  if(['28','22','20','17'].includes(String(v))){s.value=String(v);el('pjMarkup').style.display='none';}
+  else{s.value='custom';el('pjMarkup').style.display='block';}
+}
 function saveShop(){
   const s={n:el('coName').value,t:el('coTag').value,p:el('coPhone').value,e:el('coEmail').value,logo:(window._logo||'')};
   try{localStorage.setItem('cb_shop',JSON.stringify(s));}catch(e){alert('Logo too large to save — try a smaller image.');}
@@ -252,6 +276,7 @@ function applySnapshot(d){
   el('pjName').value=d.name||'';el('pjClient').value=d.client||'';el('pjAddr').value=d.addr||'';el('pjNum').value=d.num||'';
   el('pjLevel').value=d.level||'0';el('pjMarkup').value=d.markup||'22';el('pjTax').value=d.tax||'0';el('pjPermit').value=d.permit||'0';
   el('pjBond').checked=!!d.bond;el('pjPW').checked=!!d.pw;
+  syncMarkupSel();
   items=(d.items||[]).map(x=>({...x}));alts=(d.alts||[]).map(x=>({...x}));
   nextId=Math.max(1,...items.map(i=>i.id+1),...alts.map(a=>a.id+1));
   render();renderAlts();
@@ -456,17 +481,18 @@ function buildProposal(){
   const altRows=alts.filter(a=>a.desc).map((a,i)=>`<tr><td>Alt ${i+1}</td><td colspan="4">${a.desc}</td><td class="right">${a.amt<0?'− '+money(-a.amt):'+ '+money(a.amt)}</td></tr>`).join('');
   el('proposal').innerHTML=`
   <div class="prop-page">
-    <div class="prop-header">
-      <div>${window._logo?`<img class="prop-logo" src="${window._logo}">`:''}<div class="prop-co">${co}</div><div class="prop-co-sub">${el('coTag').value||''}</div></div>
-      <div class="prop-contact">${el('coPhone').value||''}<br>${el('coEmail').value||''}</div>
+    <div class="prop-banner">
+      ${window._logo?`<img class="prop-logo" src="${window._logo}">`:''}
+      <div class="prop-co">${co}</div>
+      <div class="prop-co-sub">${el('coTag').value||''}</div>
+      <div class="prop-contact">${[el('coPhone').value,el('coEmail').value].filter(Boolean).join(' · ')}</div>
     </div>
+    <div class="prop-title">B I D &nbsp; P R O P O S A L</div>
     <div class="prop-meta">
-      <span><b>PROPOSAL</b> №: ${num}</span>
-      <span><b>Date:</b> ${fmt(today)}</span>
-      <span><b>Valid through:</b> ${fmt(valid)}</span>
-    </div>
-    <div class="prop-meta">
+      <span><b>Proposal №:</b> ${num}</span>
+      <span><b>Date issued:</b> ${fmt(today)}</span>
       <span><b>Prepared for:</b> ${el('pjClient').value||'—'}</span>
+      <span><b>Valid through:</b> ${fmt(valid)}</span>
       <span><b>Project:</b> ${el('pjName').value||'—'}</span>
       <span><b>Address:</b> ${el('pjAddr').value||'—'}</span>
     </div>
@@ -482,8 +508,8 @@ function buildProposal(){
       ${c.permit>0?`<tr><td colspan="5" class="right">Permit allowance</td><td class="right">${money(c.permit)}</td></tr>`:''}
       ${c.bond>0?`<tr><td colspan="5" class="right">Performance &amp; payment bond</td><td class="right">${money(c.bond)}</td></tr>`:''}
       ${c.tax>0?`<tr><td colspan="5" class="right">Sales tax (${el('pjTax').value}%)</td><td class="right">${money(c.tax)}</td></tr>`:''}
-      <tr><td colspan="5" class="right" style="color:var(--teal-dark)"><b>TOTAL PROPOSAL AMOUNT</b></td><td class="right" style="color:var(--teal-dark)"><b>${money(c.total)}</b></td></tr>
     </table>
+    <div class="prop-total-box"><span>TOTAL PROPOSAL AMOUNT</span><span>${money(c.total)}</span></div>
     ${altRows?`<div class="prop-sec">ALTERNATES</div><table class="prop-table"><tr><th>Alt #</th><th colspan="4">Description</th><th class="right">Add / Deduct</th></tr>${altRows}</table>`:''}
     <div class="prop-sec">EXCLUSIONS</div>
     <div class="prop-body">Structural steel, blocking, or backing (by others); waterproofing or air barrier behind glazing system (by others); electrical work for automatic operators or access control (by others); demolition of existing glazing unless listed above; engineering stamps; bonds or permits unless listed above; any work not specifically described above.</div>
