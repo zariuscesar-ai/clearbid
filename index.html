@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ClearBid Estimating — Bid-Ready Glass & Glazing Estimates in 24 Hours</title>
-<meta name="description" content="First estimate free. Send plans by 2 PM, get a bid-ready, white-label glazing proposal in 24 hours. Built by working commercial glaziers. No software to learn, no setup fees, no seat licenses.">
+<meta name="description" content="Send us your plans by 2 PM, get a bid-ready, white-label glazing proposal in 24 hours. Built by working commercial glaziers. No software to learn, no monthly seat licenses.">
 <style>
   :root{
     --navy:#0F2A43; --teal:#0E7C7B; --teal-dark:#0A5E5D; --light:#EBF4F4;
@@ -14,49 +14,39 @@
   body{font-family:'Segoe UI',system-ui,-apple-system,Arial,sans-serif;color:var(--ink);line-height:1.6;background:var(--white)}
   .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
   header{background:var(--navy);color:#fff;padding:18px 0}
-  header .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  header .wrap{display:flex;justify-content:space-between;align-items:center}
   .logo{font-size:1.35rem;font-weight:800;letter-spacing:.5px}
   .logo span{color:#5BC8C7}
-  .navlinks a{color:#C8D8E4;text-decoration:none;margin-right:18px;font-size:.95rem}
-  .navlinks a:hover{color:#fff}
   .cta-btn{background:var(--teal);color:#fff;text-decoration:none;padding:12px 26px;border-radius:6px;font-weight:700;display:inline-block;transition:background .2s}
   .cta-btn:hover{background:var(--teal-dark)}
-  .cta-ghost{background:transparent;border:2px solid #5BC8C7;color:#5BC8C7;text-decoration:none;padding:10px 24px;border-radius:6px;font-weight:700;display:inline-block;margin-left:10px}
   .hero{background:linear-gradient(160deg,var(--navy) 0%,#16405F 100%);color:#fff;padding:80px 0 90px;text-align:center}
   .hero h1{font-size:clamp(1.8rem,4.5vw,3rem);line-height:1.15;max-width:820px;margin:0 auto 18px}
   .hero h1 em{color:#5BC8C7;font-style:normal}
   .hero p{font-size:1.15rem;color:#C8D8E4;max-width:640px;margin:0 auto 32px}
-  .hero .sub{font-size:1rem;color:#8FB0C4;margin-top:14px}
-  .hero .sub b{color:#5BC8C7}
+  .hero .sub{font-size:.95rem;color:#8FB0C4;margin-top:14px}
   section{padding:64px 0}
   h2{font-size:1.7rem;color:var(--navy);margin-bottom:28px;text-align:center}
   .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
   .card{background:var(--light);border-radius:10px;padding:28px}
   .card h3{color:var(--teal-dark);margin-bottom:10px;font-size:1.1rem}
+  .card .big{font-size:2rem;font-weight:800;color:var(--navy)}
   .steps{counter-reset:step}
   .step{display:flex;gap:18px;margin-bottom:22px;align-items:flex-start}
   .stepnum{background:var(--teal);color:#fff;min-width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
   .gray-bg{background:var(--light)}
-  .price-card{background:#fff;border:2px solid var(--teal);border-radius:12px;padding:34px;text-align:center;display:flex;flex-direction:column}
+  .price-card{background:#fff;border:2px solid var(--teal);border-radius:12px;padding:34px;text-align:center}
   .price-card.feature{background:var(--navy);color:#fff;border-color:var(--navy)}
-  .price-card .amount{font-size:2.2rem;font-weight:800;color:var(--teal);margin:8px 0}
+  .price-card .amount{font-size:2.4rem;font-weight:800;color:var(--teal);margin:8px 0}
   .price-card.feature .amount{color:#5BC8C7}
-  .price-card ul{list-style:none;margin:16px 0 24px;text-align:left;flex:1}
+  .price-card ul{list-style:none;margin:16px 0 24px;text-align:left}
   .price-card li{padding:6px 0 6px 26px;position:relative}
   .price-card li:before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:800}
   .price-card.feature li:before{color:#5BC8C7}
-  .badge{display:inline-block;background:#D94F4F;color:#fff;font-size:.75rem;font-weight:800;letter-spacing:.5px;padding:4px 12px;border-radius:20px;margin-bottom:8px}
-  .cmp{width:100%;border-collapse:collapse;font-size:.95rem;background:#fff;border-radius:10px;overflow:hidden}
-  .cmp th{background:var(--navy);color:#fff;padding:12px 14px;text-align:left;font-size:.85rem}
-  .cmp td{padding:12px 14px;border-bottom:1px solid #DDE7E7}
-  .cmp tr:nth-child(even) td{background:var(--light)}
-  .cmp .yes{color:var(--teal-dark);font-weight:700}
-  .cmp .no{color:#B04848}
   .guarantee{text-align:center;max-width:680px;margin:0 auto}
   .guarantee strong{color:var(--teal-dark)}
   footer{background:var(--navy);color:#8FB0C4;padding:28px 0;text-align:center;font-size:.9rem}
   footer a{color:#5BC8C7}
-  @media(max-width:640px){.hero{padding:56px 0}.cmp{font-size:.8rem}.cmp th,.cmp td{padding:8px}}
+  @media(max-width:640px){.hero{padding:56px 0}}
 </style>
 </head>
 <body>
@@ -64,41 +54,31 @@
 <header>
   <div class="wrap">
     <div class="logo">CLEAR<span>BID</span> ESTIMATING</div>
-    <div>
-      <span class="navlinks"><a href="/es">Español</a><a href="/app">Free Quote Tool</a></span>
-      <a class="cta-btn" href="https://tally.so/r/RGrDGP">Get a FREE Estimate</a>
-    </div>
+    <a class="cta-btn" href="mailto:support@glassbids.app?subject=Estimate%20Request%20—%20ClearBid">Send Us Plans</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <h1>Your first glazing estimate is <em>free</em>. Bid-ready in 24 hours, done by real glaziers.</h1>
-    <p>You're losing bids because you don't have time to estimate them. Email us the plans — we send back a polished, line-item proposal in your branding, ready to submit. No software to learn. No setup fees. No seat licenses.</p>
-    <a class="cta-btn" href="https://tally.so/r/RGrDGP">Claim Your Free Estimate</a>
-    <a class="cta-ghost" href="/app">Try the Free Quote Tool</a>
-    <div class="sub"><b>First estimate 100% free</b> — no card, no commitment. If it's not bid-ready, you never pay us anything.</div>
-  </div>
-</section>
-
-<section class="gray-bg">
-  <div class="wrap">
-    <h2>Why give us a shot? Compare for yourself.</h2>
-    <table class="cmp">
-      <tr><th></th><th>ClearBid</th><th>Estimating software</th><th>Other estimating services</th></tr>
-      <tr><td><b>Who does the work</b></td><td class="yes">We do — working commercial glaziers</td><td class="no">You do (it's just software)</td><td>Generic multi-trade estimators</td></tr>
-      <tr><td><b>Setup time</b></td><td class="yes">None — email plans today</td><td class="no">2–10 weeks + setup fees</td><td>Days of back-and-forth</td></tr>
-      <tr><td><b>Typical cost</b></td><td class="yes">$95–195/estimate, volume from ~$38</td><td class="no">$150–300+ per user, per month, forever</td><td class="no">~$200 average per estimate</td></tr>
-      <tr><td><b>Turnaround</b></td><td class="yes">24 hours (same-day rush available)</td><td>As fast as you can work</td><td class="no">2 days to 9 days</td></tr>
-      <tr><td><b>Glazing specialty</b></td><td class="yes">100% glass &amp; glazing only</td><td>Varies</td><td class="no">Rarely — all trades</td></tr>
-      <tr><td><b>First one free</b></td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
-      <tr><td><b>Risk</b></td><td class="yes">Zero — don't pay if not bid-ready</td><td class="no">Subscription + your time learning it</td><td>Pay and hope</td></tr>
-    </table>
-    <p style="text-align:center;margin-top:18px;color:var(--gray);font-size:.9rem">Free estimating tools exist — but a free tool still needs someone with time to use it. We sell you the time back.</p>
+    <h1>Bid-ready glass &amp; glazing estimates, <em>in 24 hours</em>, done by real glaziers.</h1>
+    <p>You're losing bids because you don't have time to estimate them. Email us the plans — we send back a polished, line-item proposal in your branding, ready to submit. No software to learn. No $300/month seat license.</p>
+    <a class="cta-btn" href="mailto:support@glassbids.app?subject=Estimate%20Request%20—%20ClearBid">Get Your First Estimate</a>
+    <div class="sub">First estimate for new shops: half price. If it's not bid-ready, you don't pay.</div>
   </div>
 </section>
 
 <section>
+  <div class="wrap">
+    <h2>Why glass shops use ClearBid</h2>
+    <div class="cols">
+      <div class="card"><h3>Built by glaziers</h3><p>We estimate commercial glazing for a living — storefront, curtain wall, entrances, railings, Smart Glass. We know scope gaps, exclusions, and what GCs expect to see.</p></div>
+      <div class="card"><h3>Faster than hiring</h3><p>A full-time estimator costs $70k+/year. Estimating software costs $150–300/month per seat and you still do the work. We charge per estimate — pay only when you bid.</p></div>
+      <div class="card"><h3>White-label</h3><p>Every proposal goes out under <strong>your</strong> company name, logo, and rates. Your client never knows we exist.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gray-bg">
   <div class="wrap">
     <h2>How it works</h2>
     <div class="steps" style="max-width:640px;margin:0 auto">
@@ -109,61 +89,34 @@
   </div>
 </section>
 
-<section class="gray-bg">
+<section>
   <div class="wrap">
-    <h2>Simple pricing — pay per bid, not per seat</h2>
-    <div class="cols" style="max-width:1000px;margin:0 auto">
+    <h2>Simple pricing</h2>
+    <div class="cols" style="max-width:860px;margin:0 auto">
       <div class="price-card">
         <h3>Per Estimate</h3>
         <div class="amount">$95–$195</div>
-        <p>vs. ~$200 market average</p>
+        <p>per project, by complexity</p>
         <ul>
-          <li><b>First estimate FREE</b></li>
           <li>Storefront, doors &amp; entrances: $95</li>
           <li>Multi-elevation / mixed scope: $145</li>
           <li>Curtain wall &amp; complex scope: $195</li>
           <li>24-hour turnaround</li>
         </ul>
-        <a class="cta-btn" href="https://tally.so/r/RGrDGP">Start Free</a>
+        <a class="cta-btn" href="mailto:support@glassbids.app?subject=Estimate%20Request%20—%20ClearBid">Send Plans</a>
       </div>
       <div class="price-card feature">
-        <div><span class="badge">MOST POPULAR</span></div>
         <h3>Shop Retainer</h3>
         <div class="amount">$495/mo</div>
-        <p><b>10 estimates</b> — about $49 each</p>
+        <p>for shops bidding every week</p>
         <ul>
-          <li>10 estimates every month</li>
-          <li>Priority turnaround</li>
+          <li>Up to 6 estimates per month</li>
+          <li>Priority same-day rush available</li>
           <li>Your rate table on file</li>
           <li>Branded proposal template included</li>
-          <li>Cancel anytime, no contract</li>
         </ul>
-        <a class="cta-btn" href="https://buy.stripe.com/aFa00c9LL4kNgZUe6i1B600">Start Retainer — Subscribe</a>
+        <a class="cta-btn" href="mailto:support@glassbids.app?subject=Retainer%20Inquiry%20—%20ClearBid">Start Retainer</a>
       </div>
-      <div class="price-card">
-        <h3>Growth</h3>
-        <div class="amount">$845/mo</div>
-        <p><b>22 estimates</b> — about $38 each</p>
-        <ul>
-          <li>22 estimates every month</li>
-          <li><b>Same-day rush included</b></li>
-          <li>Dedicated estimator who knows your shop</li>
-          <li>Bid-board reviews: which invites are worth bidding</li>
-          <li>Cancel anytime, no contract</li>
-        </ul>
-        <a class="cta-btn" href="https://buy.stripe.com/9B67sE9LL7wZ10W9Q21B601">Go Growth — Subscribe</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>Plus: free tools, because we're not afraid of them</h2>
-    <div class="cols">
-      <div class="card"><h3>QuickQuote — free forever</h3><p>Our browser-based quote builder prices storefront, curtain wall, doors, railings and Smart Glass in minutes — with your logo, your rates, bond/permit/prevailing-wage handling, and a print-ready proposal. <a href="/app" style="color:var(--teal-dark);font-weight:700">Try it now →</a></p></div>
-      <div class="card"><h3>Built by glaziers</h3><p>We estimate commercial glazing for a living — storefront, curtain wall, entrances, railings, Smart Glass. We know scope gaps, exclusions, and what GCs expect to see.</p></div>
-      <div class="card"><h3>White-label</h3><p>Every proposal goes out under <strong>your</strong> company name, logo, and rates. Your client never knows we exist.</p></div>
     </div>
   </div>
 </section>
@@ -171,16 +124,19 @@
 <section class="gray-bg">
   <div class="wrap guarantee">
     <h2>The guarantee</h2>
-    <p>Your first estimate is <strong>free</strong>. After that, if a proposal isn't <strong>bid-ready</strong> — clean takeoff, defensible pricing, professional format — <strong>you don't pay for it.</strong> We win when you win work.</p>
-    <p style="margin-top:16px"><strong>Your plans stay private.</strong> We permanently delete all drawings, plans, and project files after each proposal is delivered — nothing stored, nothing shared, nothing reused. Just remember to save your proposals: revisions require resending the original files.</p>
+    <p>If the proposal isn't <strong>bid-ready</strong> — clean takeoff, defensible pricing, professional format — <strong>you don't pay.</strong> We win when you win work.</p>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
     ClearBid Estimating — 24-Hour Glass &amp; Glazing Estimates<br>
-    <a href="mailto:probids@outlook.com">probids@outlook.com</a> · <a href="/app">Free Quote Tool</a> · <a href="/es">Español</a>
+    <a href="mailto:support@glassbids.app">support@glassbids.app</a>
   </div>
+</footer>
+
+</body>
+</html>
 </footer>
 
 </body>
